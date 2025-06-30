@@ -19,6 +19,7 @@ dist/
 build/
 .next/
 out/
+*.js.map
 
 # IDE and editor files
 .vscode/
