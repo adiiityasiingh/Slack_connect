@@ -24,9 +24,10 @@ app.use('/message', messageRoutes);
 app.get('/', (_req, res) => res.send('Slack Connect API is running'));
 
 // ✅ Fallback 404
-app.use((_req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
+app.all('*', (_req, res) => {
+    res.status(404).json({ error: 'Route not found' });
+  });
+  
 
 // ✅ Ensure MONGO URI exists
 const mongoUri = process.env.MONGODB_URI;
