@@ -3,7 +3,8 @@ import { redirectToSlack, slackOAuthCallback } from '../controllers/auth.control
 
 const router = express.Router();
 
-router.get('/auth/slack', redirectToSlack);
-router.get('/auth/slack/callback', slackOAuthCallback);
+// ✅ Corrected: leave off the `/auth` prefix
+router.get('/slack', redirectToSlack);
+router.get('/slack/callback', slackOAuthCallback);
 
 export default router;
