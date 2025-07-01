@@ -15,7 +15,7 @@ export default function ScheduledList() {
   const fetchMessages = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/message/scheduled/T093PJ6SRN1');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/message/scheduled/T093PJ6SRN1`);
       const data = await res.json();
       if (data.success) setMessages(data.messages);
     } catch (error) {
@@ -27,7 +27,7 @@ export default function ScheduledList() {
   const cancelMessage = async (id: string) => {
     setDeletingId(id);
     try {
-      await fetch(`http://localhost:5000/message/cancel/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/message/cancel/${id}`, {
         method: 'DELETE',
       });
       fetchMessages();
