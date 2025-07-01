@@ -5,8 +5,8 @@ Slack Connect is a full-stack web application that allows users to connect their
 
 ## 🌐 Live Demo
 
-Frontend (Vercel): [https://your-vercel-app.vercel.app](https://your-vercel-app.vercel.app)  
-Backend (Render): [https://your-backend-api.onrender.com](https://your-backend-api.onrender.com)
+Frontend (Vercel): [https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/](https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/)
+Backend (Render): [https://slack-connect-backend.onrender.com](https://slack-connect-backend.onrender.com)
 
 ---
 
@@ -48,7 +48,7 @@ slack-connect/
 1. Go to https://api.slack.com/apps → Create a new app
 2. Enable:
    - **OAuth & Permissions**  
-     - Redirect URL: \`https://your-backend.onrender.com/auth/slack/callback\`
+     - Redirect URL: \`https://slack-connect-backend.onrender.com/auth/slack/callback\`
      - Scopes: \`chat:write\`, \`channels:read\`, \`groups:read\`, \`users:read\`
    - **Bot Token** → Create a bot user
 3. Save:
@@ -129,7 +129,7 @@ Open \`http://localhost:3000\`
 - Set root to \`/frontend\`
 - Add:
   \`\`\`env
-  NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
+  NEXT_PUBLIC_API_URL=[https://your-backend.onrender.com](https://slack-connect-backend.onrender.com)
   \`\`\`
 
 ---
