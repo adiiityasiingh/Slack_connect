@@ -6,7 +6,11 @@ import mongoose from "mongoose";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = ["http://localhost:3000", "https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:3000", 
+  "https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app",
+  "https://slack-connect-eta.vercel.app"
+];
 
 app.use(
   cors({
