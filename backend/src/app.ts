@@ -1,47 +1,53 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import mongoose from 'mongoose';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import mongoose from "mongoose";
 
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
-import authRoutes from './routes/auth.routes';
-import messageRoutes from './routes/message.routes';
-import { startMessageScheduler } from './jobs/messageSender.job';
+import authRoutes from "./routes/auth.routes";
+import messageRoutes from "./routes/message.routes";
+import { startMessageScheduler } from "./jobs/messageSender.job";
 
 // ✅ Start scheduled job
 startMessageScheduler();
 
 // ✅ Use routers (these must be `express.Router()` instances)
-app.use('/auth', authRoutes);
-app.use('/message', messageRoutes);
+app.use("/auth", authRoutes);
+app.use("/message", messageRoutes);
 
 // ✅ Root route
-app.get('/', (_req, res) => res.send('Slack Connect API is running'));
+app.get("/", (_req, res) => res.send("Slack Connect API is running"));
 
 // ✅ Fallback 404
 app.use((_req, res) => {
-    res.status(404).json({ error: 'Route not found' });
+  res.status(404).json({ error: "Route not found" });
 });
-  
-  
 
 // ✅ Ensure MONGO URI exists
 const mongoUri = process.env.MONGODB_URI;
 if (!mongoUri) {
-  console.error('❌ MONGODB_URI is missing!');
+  console.error("❌ MONGODB_URI is missing!");
   process.exit(1);
 }
 
 mongoose
-  .connect(mongoUri, { dbName: 'slack-connect' })
-  .then(() => console.log('✅ MongoDB connected'))
-  .catch(err => {
-    console.error('❌ MongoDB connection failed', err);
+  .connect(mongoUri, { dbName: "slack-connect" })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => {
+    console.error("❌ MongoDB connection failed", err);
     process.exit(1);
   });
 
