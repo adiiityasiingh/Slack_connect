@@ -6,22 +6,27 @@ import mongoose from "mongoose";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:3000',                         // Dev
-  'https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/'      // ✅ Replace with your actual deployed frontend domain
-];
+const allowedOrigins = ["http://localhost:3000", "https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app"];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // allow requests with no origin (like mobile apps, curl, etc.)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error(`❌ CORS Rejected Origin: ${origin}`);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
+
+// Handle preflight requests (important!)
+app.options("*", cors());
 
 app.use(express.json());
 
