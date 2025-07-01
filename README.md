@@ -5,7 +5,7 @@ Slack Connect is a full-stack web application that allows users to connect their
 
 ## 🌐 Live Demo
 
-Frontend (Vercel): [https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/](https://slack-connect-j05nmk0ge-adiiityasiinghs-projects.vercel.app/)
+Frontend (Vercel): [https://slack-connect-eta.vercel.app/](https://slack-connect-eta.vercel.app/)
 Backend (Render): [https://slack-connect-backend.onrender.com](https://slack-connect-backend.onrender.com)
 
 ---
